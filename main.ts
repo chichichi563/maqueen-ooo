@@ -1,7 +1,19 @@
 input.onButtonPressed(Button.A, function () {
-    music.playMelody("C D E F G A B C5 ", 305)
-    DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eAllMotor, MyEnumDir.eBackward, 100)
     basic.showIcon(IconNames.Happy)
+    DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eAllMotor, MyEnumDir.eBackward, 100)
+    music.playMelody("C D E F G A B C5 ", 305)
+    for (let index = 0; index < 100; index++) {
+        music.playTone(370, music.beat(BeatFraction.Whole))
+        music.playTone(440, music.beat(BeatFraction.Whole))
+        music.playTone(277, music.beat(BeatFraction.Whole))
+        music.playTone(440, music.beat(BeatFraction.Whole))
+        music.playTone(370, music.beat(BeatFraction.Whole))
+        music.playTone(294, music.beat(BeatFraction.Quarter))
+        music.playTone(294, music.beat(BeatFraction.Quarter))
+        music.playTone(294, music.beat(BeatFraction.Whole))
+        music.playTone(277, music.beat(BeatFraction.Whole))
+        music.playTone(294, music.beat(BeatFraction.Whole))
+    }
 })
 input.onButtonPressed(Button.B, function () {
     music.playMelody("C5 B A G F B D C ", 307)

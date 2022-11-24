@@ -1,3 +1,13 @@
+function stop () {
+    while (DFRobotMaqueenPlusV2.readUltrasonic(DigitalPin.P11, DigitalPin.P14) < 10) {
+        DFRobotMaqueenPlusV2.controlMotorStop(MyEnumMotor.eAllMotor)
+        DFRobotMaqueenPlusV2.controlLED(MyEnumLed.eAllLed, MyEnumSwitch.eOpen)
+        DFRobotMaqueenPlusV2.setIndexColor(1, NeoPixelColors.Red)
+        DFRobotMaqueenPlusV2.setIndexColor(2, NeoPixelColors.Red)
+    }
+    DFRobotMaqueenPlusV2.controlLED(MyEnumLed.eAllLed, MyEnumSwitch.eClose)
+    DFRobotMaqueenPlusV2.ledBlank()
+}
 input.onButtonPressed(Button.A, function () {
     basic.showIcon(IconNames.Happy)
     DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eAllMotor, MyEnumDir.eBackward, 100)
@@ -16,7 +26,7 @@ input.onButtonPressed(Button.A, function () {
     }
 })
 input.onButtonPressed(Button.B, function () {
-    music.playMelody("C5 B A G F B D C ", 307)
+    music.playMelody("C5 B A G F E D C ", 307)
     DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eAllMotor, MyEnumDir.eBackward, 100)
 })
 for (let index = 0; index < 10; index++) {

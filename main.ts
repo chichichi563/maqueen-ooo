@@ -1,18 +1,25 @@
 function stop () {
+    // This controls the Maqueen's ultrasonic sensor
     while (DFRobotMaqueenPlusV2.readUltrasonic(DigitalPin.P11, DigitalPin.P14) < 10) {
         DFRobotMaqueenPlusV2.controlMotorStop(MyEnumMotor.eAllMotor)
+        // This allows you to put colours on the rgb lights 
         DFRobotMaqueenPlusV2.controlLED(MyEnumLed.eAllLed, MyEnumSwitch.eOpen)
+        // This controls the colour of the LED lights at the bottom of the maqueen.
         DFRobotMaqueenPlusV2.setIndexColor(1, NeoPixelColors.Red)
         DFRobotMaqueenPlusV2.setIndexColor(2, NeoPixelColors.Red)
     }
     DFRobotMaqueenPlusV2.controlLED(MyEnumLed.eAllLed, MyEnumSwitch.eClose)
+    // Turns off all RGB
     DFRobotMaqueenPlusV2.ledBlank()
 }
 input.onButtonPressed(Button.A, function () {
+    // This controls the LEDs on the front of the Maqueen and gives them a smile face.
     basic.showIcon(IconNames.Happy)
+    // This controls the motors and makes the maqueen drive forward
     DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eAllMotor, MyEnumDir.eBackward, 100)
     music.playMelody("C D E F G A B C5 ", 305)
     for (let index = 0; index < 100; index++) {
+        // These control the notes that are played from Maqueen
         music.playTone(370, music.beat(BeatFraction.Whole))
         music.playTone(440, music.beat(BeatFraction.Whole))
         music.playTone(277, music.beat(BeatFraction.Whole))
@@ -25,11 +32,8 @@ input.onButtonPressed(Button.A, function () {
         music.playTone(294, music.beat(BeatFraction.Whole))
     }
 })
-input.onButtonPressed(Button.B, function () {
-    music.playMelody("C5 B A G F E D C ", 307)
-    DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eAllMotor, MyEnumDir.eBackward, 100)
-})
 for (let index = 0; index < 10; index++) {
+    // This displays text on the front of the MAQUEEN
     basic.showString("PRESS A ")
     basic.showArrow(ArrowNames.West)
 }
@@ -46,4 +50,5 @@ basic.forever(function () {
             DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eRightMotor, MyEnumDir.eForward, 160)
         }
     }
+    stop()
 })

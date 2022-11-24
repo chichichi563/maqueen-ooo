@@ -2,7 +2,7 @@ function stop () {
     // This controls the Maqueen's ultrasonic sensor
     while (DFRobotMaqueenPlusV2.readUltrasonic(DigitalPin.P11, DigitalPin.P14) < 10) {
         DFRobotMaqueenPlusV2.controlMotorStop(MyEnumMotor.eAllMotor)
-        // This allows you to put colours on the rgb lights 
+        // This allows you to put colours on the rgb lights
         DFRobotMaqueenPlusV2.controlLED(MyEnumLed.eAllLed, MyEnumSwitch.eOpen)
         // This controls the colour of the LED lights at the bottom of the maqueen.
         DFRobotMaqueenPlusV2.setIndexColor(1, NeoPixelColors.Red)
@@ -18,7 +18,7 @@ input.onButtonPressed(Button.A, function () {
     // This controls the motors and makes the maqueen drive forward
     DFRobotMaqueenPlusV2.controlMotor(MyEnumMotor.eAllMotor, MyEnumDir.eBackward, 100)
     music.playMelody("C D E F G A B C5 ", 305)
-    for (let index = 0; index < 100; index++) {
+    for (let index = 0; index < 2; index++) {
         // These control the notes that are played from Maqueen
         music.playTone(370, music.beat(BeatFraction.Whole))
         music.playTone(440, music.beat(BeatFraction.Whole))
@@ -32,6 +32,20 @@ input.onButtonPressed(Button.A, function () {
         music.playTone(294, music.beat(BeatFraction.Whole))
     }
 })
+basic.showLeds(`
+    # . # . #
+    . # . # .
+    # . # . #
+    . # . # .
+    # . # . #
+    `)
+basic.showLeds(`
+    . # . # .
+    # . # . #
+    . # . # .
+    # . # . #
+    . # . # .
+    `)
 for (let index = 0; index < 10; index++) {
     // This displays text on the front of the MAQUEEN
     basic.showString("PRESS A ")
